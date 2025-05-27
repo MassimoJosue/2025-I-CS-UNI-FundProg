@@ -42,7 +42,7 @@ public:
 };
 
 inline ostream &operator<<(ostream &os, Person &p){
-    return os << "Hola,soy "<< p.getName() <<" y tengo "<< p.getAge() << " años (<<)" << endl;
+    return os << "Hola, soy "<< p.getName() <<" y tengo "<< p.getAge() << " años (<<)" << endl;
 }
 
 #endif
