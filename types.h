@@ -4,7 +4,9 @@
 
 using namespace std;
 using NameType = string;
-using AgeType  = unsigned int;
+using DocType  = enum {DocTypeNone, DocTypePassport, DocTypeDNI, DocTypeCE};
+
+using SalaryType = double;
 
 using ContainerElemType = int;
 

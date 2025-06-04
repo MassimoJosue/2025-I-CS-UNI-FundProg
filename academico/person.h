@@ -2,13 +2,15 @@
 #define __PERSONA_H__
 
 #include <iostream>
-#include "types.h"
+#include <strstream>
+#include "../types.h"
 using namespace std;
 
 class Person{
 private:
-    NameType m_name;
-    AgeType  m_age;
+    NameType m_name      = "NoName";
+    DocType  m_DocType   = DocTypeNone;
+    string   m_Document  = "NoDocument";
 
 public:
     // Constructor
@@ -19,7 +21,7 @@ public:
     // 5. Desde C++11 se pueden llamar entre constructores
     // 6. Solo se llama 1 de ellos
     Person();
-    Person(NameType name, AgeType edad);
+    Person(NameType name, DocType doctype, string document);
 
     // Destructor
     // 1. Tiene el mismo nombre que la clase pero con ~
@@ -33,16 +35,24 @@ public:
 
     // Metodos.
     // Funciones inline (pequeñas, sin bucles)
-    void        setAge(const AgeType age)   {  m_age= age;      }
-    AgeType     getAge()                    {  return m_age;    }
     void        setName(const NameType name){  m_name = name;   }    
     NameType    getName()                   {  return m_name;   }
+    void        setDocType(const DocType doctype)    {  m_DocType = doctype;        }
+    DocType     getDocType()                         {  return m_DocType;           }
+    void        setDocument(const string document)   {  m_Document = document;      }
+    string      getDocument()                        {  return m_Document;          }
 
-    void operator+=(int n);
+    string      toString(){
+        ostrstream ostr;
+        ostr << " Name: "     << getName() 
+             << " DocType: "   << getDocType() 
+             << " Document: " << getDocument();
+        return ostr.str();
+    }
 };
 
 inline ostream &operator<<(ostream &os, Person &p){
-    return os << "Hola, soy "<< p.getName() <<" y tengo "<< p.getAge() << " años (<<)" << endl;
+    return os << p.toString() << endl;
 }
 
 #endif
