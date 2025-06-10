@@ -12,7 +12,8 @@ SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
 	   academico/student.cpp \
 	   academico/undergradstudent.cpp \
 	   academico/graduatestudent.cpp \
-	   academico/admin.cpp
+	   academico/admin.cpp \
+	   DemoTemplates.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

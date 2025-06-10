@@ -1,8 +1,12 @@
 #ifndef __UTIL_H__
 #define __UTIL_H__
 
-void intercambiar(int &a, int &b);
-void intercambiar(char &a, char &b);
+template <typename T>
+void intercambiar(T &a, T &b) {
+    T temp = a;
+    a = b;
+    b = temp;
+}
 
 int Suma    (int a, int b);
 int Resta   (int a, int b);

@@ -9,6 +9,7 @@
 #include "FuncPointers.h"
 #include "DemoComplex.h"
 #include "inheritance.h"
+#include "DemoTemplates.h"
 using namespace std; // Para evitar el std::
 
 // Para compilar con C++:
@@ -30,7 +31,9 @@ int main(){
     // DemoClasses();
     // DemoFunctionPointers();
     // DemoComplex();
-    DemoInheritance();
+    // DemoInheritance();
+    DemoTemplates1();
+    DemoTemplates2();
     return 0;
 }
 
