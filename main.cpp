@@ -34,6 +34,7 @@ int main(){
     // DemoInheritance();
     DemoTemplates1();
     DemoTemplates2();
+    DemoVariadicTemplates();
     return 0;
 }
 

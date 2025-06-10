@@ -13,5 +13,6 @@ void Procesar(T &v1, T &v2){
 
 void DemoTemplates1();
 void DemoTemplates2();
+void DemoVariadicTemplates();
 
 #endif // __DEMO_TEMPLATES_H__
