@@ -8,7 +8,8 @@ SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
 	   compareFunc.cpp FuncPointers.cpp DemoComplex.cpp \
 	   inheritance.cpp \
 	   academico/person.cpp \
-	   academico/professor.cpp
+	   academico/professor.cpp \
+	   academico/student.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

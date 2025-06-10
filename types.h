@@ -8,6 +8,8 @@ using DocType  = enum {DocTypeNone, DocTypePassport, DocTypeDNI, DocTypeCE};
 
 using SalaryType = double;
 
+using StudentCode = string;
+
 using ContainerElemType = int;
 
 #endif // __TYPES_H__
