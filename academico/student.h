@@ -13,7 +13,7 @@ class Student : public Person{
     void setCode(StudentCode code){m_code = code ;}
     StudentCode getCode() {return m_code;}
 
-    string toString(){
+        virtual string toString(){
         ostrstream ostr;
         ostr << Person :: toString()
              << " Codigo: " << getCode();

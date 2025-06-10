@@ -14,7 +14,7 @@ class UndergraduateStudent : public Student {
         void setCareer(const string career) { m_Career = career; }
         string getCareer() { return m_Career; }
 
-        string toString() {
+        virtual string toString() {
             std::ostringstream ostr;
             ostr << Student::toString() << " Career: " << getCareer();
             return ostr.str();

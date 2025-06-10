@@ -13,7 +13,6 @@ Person::Person(NameType name, DocType doctype, string document){
 Person::Person()
     : Person("SinNombre", DocTypeNone, "Empty")
 {
-
 }
 
 Person::~Person(){

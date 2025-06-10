@@ -14,7 +14,7 @@ class GraduateStudent : public Student {
         void setGraduateProgram(const string GraduateProgram) { m_GraduateProgram = GraduateProgram; }
         string getGraduateProgram() { return m_GraduateProgram; }
 
-        string toString() {
+        virtual string toString() {
             std::ostringstream ostr;
             ostr << Student::toString() << " GraduateProgram: " << getGraduateProgram();
             return ostr.str();

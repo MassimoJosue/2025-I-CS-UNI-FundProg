@@ -18,14 +18,12 @@ class Admin : public Person{
         void setOffice(string office)      { m_office = office;   }
         OfficeType getOffice()             { return m_office;     }
 
-
-        string      toString(){
+        virtual string toString(){
             ostringstream ostr;
             ostr << Person::toString() 
                  << " Office: " << getOffice()
                  << " Salary: " << getSalary();
             return ostr.str();
         }
-
 };
 #endif // __ADMIN_H__

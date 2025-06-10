@@ -42,7 +42,7 @@ public:
     void        setDocument(const string document)   {  m_Document = document;      }
     string      getDocument()                        {  return m_Document;          }
 
-    string      toString(){
+    virtual string toString(){
         ostrstream ostr;
         ostr << " Name: "     << getName() 
              << " DocType: "   << getDocType() 
