@@ -9,7 +9,10 @@ SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
 	   inheritance.cpp \
 	   academico/person.cpp \
 	   academico/professor.cpp \
-	   academico/student.cpp
+	   academico/student.cpp \
+	   academico/undergradstudent.cpp \
+	   academico/graduatestudent.cpp \
+	   academico/admin.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

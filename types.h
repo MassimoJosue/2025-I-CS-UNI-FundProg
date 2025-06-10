@@ -9,6 +9,7 @@ using DocType  = enum {DocTypeNone, DocTypePassport, DocTypeDNI, DocTypeCE};
 using SalaryType = double;
 
 using StudentCode = string;
+using OfficeType = string;
 
 using ContainerElemType = int;
 
