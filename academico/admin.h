@@ -18,7 +18,7 @@ class Admin : public Person{
         void setOffice(string office)      { m_office = office;   }
         OfficeType getOffice()             { return m_office;     }
 
-        virtual string toString(){
+        string toString() override {
             ostringstream ostr;
             ostr << Person::toString() 
                  << " Office: " << getOffice()

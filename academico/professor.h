@@ -12,7 +12,7 @@ public:
     void setSalary(SalaryType salary)  { m_salary = salary;   }
     SalaryType getSalary()             { return m_salary;     }
 
-    virtual string toString(){
+    string toString() override {
         ostrstream ostr;
         ostr << Person::toString() 
              << " Salary: " << getSalary();
