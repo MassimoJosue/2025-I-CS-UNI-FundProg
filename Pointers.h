@@ -3,5 +3,6 @@
 
 void DemoPointers();
 void DemoPointertoClassMembers();
+void DemoComplexReturnValues();
 
 #endif // __FUNC_POINTERS_H__
