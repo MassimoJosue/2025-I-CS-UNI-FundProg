@@ -121,15 +121,32 @@ void ExecuteOperation(int iOpe, int v1, int v2){
          << " Ope: "<< iOpe << " rpta: " << rpta << endl;
 }
 
+int (Worker::*GetMethod(int iOpe))()
+{
+    int (Worker::*apMet[2])() = {&Worker::suma, &Worker::resta};
+    return apMet[iOpe];
+}
+
+void ExecuteMethod(Worker &obj, int iMet){
+    int (Worker::*pMet)() = GetMethod(iMet);
+    int rpta = (obj.*pMet)();
+    Print(obj, "obj");
+    cout << "rpta: " << rpta << endl;
+}
+
 void DemoComplexReturnValues(){
     ExecuteOperation(0, 5, 7); // Suma
     ExecuteOperation(2, 6, 8); // Multiplicacion
 
     Worker obj1;
+    ExecuteMethod(obj1, 0);
+    ExecuteMethod(obj1, 1);
+
     Worker *pObj = nullptr;
     pObj = new Worker; 
-    // ExecuteMethod(obj1, 0);
-    // ExecuteMethod(obj1, 1);
+    pObj->a = 12;   pObj->b = 9;
+    ExecuteMethod(*pObj, 0);
+    ExecuteMethod(*pObj, 1);
 }
 
 void DemoPointers(){
