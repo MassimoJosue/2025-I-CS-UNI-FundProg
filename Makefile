@@ -1,11 +1,11 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -g -pthread  # Añadido -pthread
+CXXFLAGS = -std=c++17 -Wall -g -pthread # Añadido -pthread
 LDFLAGS = -pthread # Añadido -pthread
 
 TARGET = main
 SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
        struct.cpp recursion.cpp mystring.cpp classes.cpp util.cpp \
-	   compareFunc.cpp FuncPointers.cpp DemoComplex.cpp \
+	   compareFunc.cpp Pointers.cpp DemoComplex.cpp \
 	   inheritance.cpp \
 	   academico/person.cpp \
 	   academico/professor.cpp \

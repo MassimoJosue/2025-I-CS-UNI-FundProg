@@ -49,6 +49,7 @@ public:
              << " Document: " << getDocument();
         return ostr.str();
     }
+    void TestMethod();
 };
 
 inline ostream &operator<<(ostream &os, Person &p){

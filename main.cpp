@@ -6,7 +6,7 @@
 #include "sorting.h"
 #include "mystring.h"
 #include "classes.h"
-#include "FuncPointers.h"
+#include "Pointers.h"
 #include "DemoComplex.h"
 #include "inheritance.h"
 #include "DemoTemplates.h"
@@ -36,7 +36,8 @@ int main(){
     // DemoTemplates1();
     // DemoTemplates2();
     // DemoVariadicTemplates();
-    DemoFiles();
+    // DemoFiles();
+    DemoPointertoClassMembers();
     return 0;
 }
 

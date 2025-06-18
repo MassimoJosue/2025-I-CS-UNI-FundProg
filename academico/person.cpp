@@ -19,3 +19,9 @@ Person::~Person(){
     cout << "Destructor Persona(" << toString() << ");" << endl;
 }
 
+void Person::TestMethod(){
+
+}
+
+
+
