@@ -104,16 +104,19 @@ void DemoPointertoClassMembers(){
     Fx(*pObj, &Worker::resta);
 }
 
-int (*GetOperation(int n))(int, int)
+using PF = int (*)(int, int);
+// int (*GetOperation(int n))(int, int)
+PF GetOperation(int n)
 {
-    int (*apf[4])(int, int) = {&Suma, &Resta, &Mult, &Division};
+    // int (*apf[4])(int, int) = {&Suma, &Resta, &Mult, &Division};
+    PF apf[4] = {&Suma, &Resta, &Mult, &Division};
     return apf[n];
 }
 
 void ExecuteOperation(int iOpe, int v1, int v2){
-    int (*pf)(int, int) = nullptr;
+    PF pf = nullptr;
     pf = GetOperation(iOpe);
-    int rpta = (*pf)(v1, v2);
+    auto rpta = (*pf)(v1, v2);
     cout << "v1: " << v1 << " v2:" << v2 
          << " Ope: "<< iOpe << " rpta: " << rpta << endl;
 }
@@ -121,6 +124,12 @@ void ExecuteOperation(int iOpe, int v1, int v2){
 void DemoComplexReturnValues(){
     ExecuteOperation(0, 5, 7); // Suma
     ExecuteOperation(2, 6, 8); // Multiplicacion
+
+    Worker obj1;
+    Worker *pObj = nullptr;
+    pObj = new Worker; 
+    // ExecuteMethod(obj1, 0);
+    // ExecuteMethod(obj1, 1);
 }
 
 void DemoPointers(){
