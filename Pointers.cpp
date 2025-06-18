@@ -54,6 +54,12 @@ void Print(Worker &w, string str){
     cout << str << " " << w << endl;
 }
 
+void Fx(Worker &obj, int (Worker::*pMet)()){
+    auto rpta = (obj.*pMet)();
+    Print(obj, "obj");
+    cout << "rpta: " << rpta << endl;
+}
+
 void DemoPointertoClassMembers(){
     Worker obj1;
     Worker *pObj = nullptr;
@@ -62,15 +68,18 @@ void DemoPointertoClassMembers(){
     auto    *pi1 = &obj1.a;
     // double *pd1 = &obj1.c;
 
-    int Worker::*pAtt     = &Worker::a;
+    // int Worker::*pAtt     = &Worker::a;
+    auto pAtt     = &Worker::a;
     // int Worker::*apAtt[2]  = {&Worker::a, &Worker::b};
-    int (Worker::*pMet)() = &Worker::suma;
+    
+    // int (Worker::*pMet)() = &Worker::suma;
+    auto pMet     = &Worker::suma;
     // int (Worker::*apMet[2])() = {&Worker::suma, &Worker::resta};
     
     *pi1 += 7; // Puntero normal a un int
 
     obj1.a += 10;
-    int r = obj1.suma();
+    auto r = obj1.suma();
     Print(obj1, "obj1");
     cout << "r: " << r << endl;
 
@@ -88,6 +97,11 @@ void DemoPointertoClassMembers(){
     r = (pObj->*pMet)();
     Print(*pObj, "pObj");
     cout << "r: " << r << endl;
+
+    Fx(obj1, &Worker::suma);
+    Fx(obj1, &Worker::resta);
+    Fx(*pObj, &Worker::suma);
+    Fx(*pObj, &Worker::resta);
 }
 
 void DemoPointers(){
