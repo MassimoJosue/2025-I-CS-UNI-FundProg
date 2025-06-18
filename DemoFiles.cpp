@@ -97,4 +97,9 @@ void DemoRandomFiles() {
 void DemoFiles(){
     DemoBinaryFiles();
     DemoRandomFiles();
+    cout << sizeof(Persona) << endl;
+    cout << sizeof(Persona::nombre) << endl;
+    cout << sizeof(int) << endl;
+    cout << sizeof(double) << endl;
+    
 }
