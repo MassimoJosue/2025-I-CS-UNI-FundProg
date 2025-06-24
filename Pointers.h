@@ -6,10 +6,10 @@ void DemoPointertoClassMembers();
 void DemoComplexReturnValues();
 
 enum OpeType {
-    Adding,
-    Substracting,
-    Multiplying,
-    Dividing
+    Adding = 30,
+    Substracting = 45,
+    Multiplying = 10,
+    Dividing = 90
 };
 
 #endif // __FUNC_POINTERS_H__

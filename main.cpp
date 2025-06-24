@@ -37,6 +37,7 @@ int main(){
     // DemoTemplates2();
     // DemoVariadicTemplates();
     // DemoFiles();
+    DemoPointers();
     // DemoPointertoClassMembers();
     DemoComplexReturnValues();
     return 0;

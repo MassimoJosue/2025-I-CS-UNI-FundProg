@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 #include "Pointers.h"
 #include "util.h"
 
@@ -8,35 +9,50 @@ using namespace std;
 void DemoSwitch(){
     int a, b, rpta, optTmp;
     OpeType opt;
-    cout << "ingrese a y b";
+    cout << "DemoArrayFunctPointers:" << endl;
+    cout << "Ingrese a y b: ";
     cin >> a >> b;
-    cout << "ingrese operacion:\n0: Suma\n1: Resta\n2: Mult\n3: Div:";
+    cout << "Ingrese operacion:\n" 
+         << Adding << ": Suma\n"
+         << Substracting << ": Resta\n"
+         << Multiplying  << ": Mult\n"
+         << Dividing     << ": Div:";
     cin >> optTmp;
     opt = (OpeType)optTmp;
     switch(opt){
-        case Adding : rpta = Suma(a, b);
+        case Adding :       rpta = Suma(a, b);
                 break;
         case Substracting : rpta = Resta(a, b);
                 break;
-        case Multiplying : rpta = Mult(a, b);
+        case Multiplying :  rpta = Mult(a, b);
                 break;
-        case Dividing : rpta = Division(a, b);
+        case Dividing :     rpta = Division(a, b);
                 break;
         default:
                 rpta = 0;
     }
-    cout << "Rpta: " << rpta;
+    cout << "Rpta: " << rpta << endl;
 }
+using PF = int (*)(int, int);
 
 void DemoArrayFunctPointers(){
     int a, b, rpta, opt;
-    cout << "ingrese a y b";
+    cout << "DemoArrayFunctPointers:" << endl;
+    cout << "Ingrese a y b: ";
     cin >> a >> b;
-    cout << "ingrese operacion:\n0: Suma\n1: Resta\n2: Mult\n3: Div:";
+    cout << "Ingrese operacion:\n" 
+         << Adding << ": Suma\n"
+         << Substracting << ": Resta\n"
+         << Multiplying  << ": Mult\n"
+         << Dividing     << ": Div:";
     cin >> opt;
-    int (*apf[4])(int, int) = {&Suma, &Resta, &Mult, &Division};
-    rpta = (*apf[opt])(a, b);
-    cout << "Rpta sin Switch: " << rpta;
+    map<OpeType, PF> map;
+    map[Adding]       = &Suma;
+    map[Substracting] = &Resta;
+    map[Multiplying]  = &Mult;
+    map[Dividing]     = &Division;
+    rpta = (*map[(OpeType)opt])(a, b);
+    cout << "Rpta sin Switch: " << rpta <<endl;
 }
 
 class Worker{
@@ -106,15 +122,18 @@ void DemoPointertoClassMembers(){
     Fx(*pObj, &Worker::resta);
 }
 
-using PF = int (*)(int, int);
 // int (*GetOperation(int n))(int, int)
-PF GetOperation(int n){
+PF GetOperation(OpeType n){
     // int (*apf[4])(int, int) = {&Suma, &Resta, &Mult, &Division};
-    PF apf[4] = {&Suma, &Resta, &Mult, &Division};
-    return apf[n];
+    map<OpeType, PF> map;
+    map[Adding]       = &Suma;
+    map[Substracting] = &Resta;
+    map[Multiplying]  = &Mult;
+    map[Dividing]     = &Division;
+    return map[n];
 }
 
-void ExecuteOperation(int iOpe, int v1, int v2){
+void ExecuteOperation(OpeType iOpe, int v1, int v2){
     PF pf = nullptr;
     pf = GetOperation(iOpe);
     auto rpta = (*pf)(v1, v2);
@@ -128,9 +147,9 @@ void ExecuteOperation(int iOpe, int v1, int v2){
 // }
 
 auto GetMethod(OpeType iOpe){
-    PWorkerMethod apMet[2];
-    apMet[(int)Adding]       = &Worker::suma;
-    apMet[(int)Substracting] = &Worker::resta;
+    map<OpeType, PWorkerMethod> apMet;
+    apMet[Adding]       = &Worker::suma;
+    apMet[Substracting] = &Worker::resta;
     return apMet[iOpe];
 }
 
