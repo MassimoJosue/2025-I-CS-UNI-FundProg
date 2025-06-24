@@ -73,80 +73,83 @@ void DemoLambdaFunctions() {
     };
     imprimir3B(numeros);
     imprimir3B(numeros);
-
-    // // ---------------------------------------------------------------------
-    // // 5. Lambda con parámetro extra y captura de variables
-    // cout << "4. Lambda con parámetro extra y captura de variables:\n";
-    // string prefijo = "Valor: ";
-    // int factor = 2;
+    cout << "\n";
     
-    // // Lambda que captura 'prefijo' por valor y 'factor' por referencia
-    // auto imprimirConOperacion = [prefijo, &factor](int n) {
-    //     cout << prefijo << n << ", " << n << " × " << factor << " = " << n * factor << "\n";
-    //     factor++; // Modificamos factor (capturado por referencia)
-    // };
+    // ---------------------------------------------------------------------
+    // 5. Lambda con parámetro extra y captura de variables
+    cout << "4. Lambda con parámetro extra y captura de variables:\n";
+    string prefijo = "Valor: ";
+    int factor = 2;
     
-    // for_each(numeros.begin(), numeros.end(), imprimirConOperacion);
-    // cout << "Factor final: " << factor << "\n\n";
+    // Lambda que captura 'prefijo' por valor y 'factor' por referencia
+    auto imprimirConOperacion = [prefijo, &factor](int n) {
+        cout << prefijo << n << ", "  << n << " × " << factor 
+             << " = "   << n * factor << "\n";
+        factor++; // Modificamos factor (capturado por referencia)
+    };
     
-    // // ---------------------------------------------------------------------
-    // // 6. Diferentes formas de captura
-    // cout << "5. Diferentes formas de captura:\n";
-    // int a = 10, b = 20, c = 30;
+    for_each(numeros.begin(), numeros.end(), imprimirConOperacion);
+    cout << "Factor final: " << factor << "\n\n";
     
-    // // Captura específica: a por valor, b por referencia, c por valor
-    // auto lambdaCapturas = [a, &b, c](int x) {
-    //     cout << "a=" << a << ", b=" << b << ", c=" << c << ", x=" << x << "\n";
-    //     b++; // Solo podemos modificar b (capturada por referencia)
-    // };
+    // ---------------------------------------------------------------------
+    // 6. Diferentes formas de captura
+    cout << "5. Diferentes formas de captura:\n";
+    int a = 10, b = 20, c = 30;
     
-    // lambdaCapturas(1);
-    // lambdaCapturas(2);
-    // cout << "b modificado: " << b << "\n\n"; // b ha cambiado
+    // Captura específica: a por valor, b por referencia, c por valor
+    auto lambdaCapturas = [a, &b, c](int x) {
+        cout << "a=" << a << ", b=" << b << ", c=" << c << ", x=" << x << "\n";
+        b++; // Solo podemos modificar b (capturada por referencia)
+    };
     
-    // // Captura todo por valor
-    // auto capturaTodoPorValor = [=](int x) {
-    //     cout << "Todo por valor: a=" << a << ", x=" << x << "\n";
-    // };
-    // capturaTodoPorValor(3);
+    lambdaCapturas(1);
+    lambdaCapturas(2);
+    cout << "b modificado: " << b << "\n\n"; // b ha cambiado
     
-    // // Captura todo por referencia
-    // auto capturaTodoPorReferencia = [&](int x) {
-    //     a++; // Podemos modificar las variables originales
-    //     cout << "Todo por referencia: a=" << a << ", x=" << x << "\n";
-    // };
-    // capturaTodoPorReferencia(4);
-    // cout << "a modificado: " << a << "\n\n";
+    // Captura todo por valor
+    auto capturaTodoPorValor = [=](int x) {
+        x++;
+        cout << "Todo por valor: a=" << a << ", x=" << x << "\n";
+    };
+    capturaTodoPorValor(3);
     
-    // // ---------------------------------------------------------------------
-    // // 7. Punteros a funciones lambda
-    // cout << "6. Punteros a funciones lambda:\n";
+    // Captura todo por referencia
+    auto capturaTodoPorReferencia = [&](int x) {
+        a++; // Podemos modificar las variables originales
+        cout << "Todo por referencia: a=" << a << ", x=" << x << "\n";
+    };
+    capturaTodoPorReferencia(4);
+    cout << "a modificado: " << a << "\n\n";
     
-    // // a) Lambda sin capturas puede convertirse a puntero de función tradicional
-    // void(*ptrFuncion)(int) = [](int x) {
-    //     cout << "Puntero tradicional: " << x << "\n";
-    // };
-    // ptrFuncion(42);
+    // ---------------------------------------------------------------------
+    // 7. Punteros a funciones lambda
+    cout << "6. Punteros a funciones lambda:\n";
     
-    // // b) Lambda con capturas necesita function
-    // function<void(int)> ptrConCaptura = [a](int x) { // Capturamos 'a' por valor
-    //     cout << "function: " << x << ", a=" << a << "\n";
-    // };
-    // ptrConCaptura(100);
+    // a) Lambda sin capturas puede convertirse a puntero de función tradicional
+    void(*ptrFuncion)(int) = [](int x) {
+        cout << "Puntero tradicional: " << x << "\n";
+    };
+    ptrFuncion(42);
     
-    // // ---------------------------------------------------------------------
-    // // 8. Lambda mutable (permite modificar variables capturadas por valor)
-    // cout << "\n7. Lambda mutable:\n";
-    // int contador = 0;
+    // b) Lambda con capturas necesita function
+    function<void(int)> ptrConCaptura = [a](int x) { // Capturamos 'a' por valor
+        cout << "Function: " << x << ", a=" << a << "\n";
+    };
+    ptrConCaptura(100);
     
-    // auto lambdaMutable = [contador]() mutable {
-    //     contador++;
-    //     cout << "Contador interno: " << contador << "\n";
-    //     return contador;
-    // };
+    // ---------------------------------------------------------------------
+    // 8. Lambda mutable (permite modificar variables capturadas por valor)
+    cout << "\n7. Lambda mutable:\n";
+    int contador = 10;
     
-    // cout << "Contador original: " << contador << "\n";
-    // lambdaMutable();
-    // lambdaMutable();
-    // cout << "Contador después (no cambia): " << contador << "\n";
+    auto lambdaMutable = [contador]() mutable {
+        contador++;
+        cout << "Contador interno: " << contador << "\n";
+        return contador;
+    };
+    
+    cout << "Contador original: " << contador << "\n";
+    lambdaMutable();
+    lambdaMutable();
+    cout << "Contador después (no cambia): " << contador << "\n";
 }
