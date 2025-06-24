@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional> // Para function
+#include <cmath> // Para sqrt
 #include "DemoLambda.h"
 using namespace std;
 
@@ -143,6 +144,8 @@ void DemoLambdaFunctions() {
     int contador = 10;
     
     auto lambdaMutable = [contador]() mutable {
+        // Puedo modificar este parametro 
+        // pero no modifica la variable externa
         contador++;
         cout << "Contador interno: " << contador << "\n";
         return contador;
@@ -152,4 +155,61 @@ void DemoLambdaFunctions() {
     lambdaMutable();
     lambdaMutable();
     cout << "Contador después (no cambia): " << contador << "\n";
+
+    // 9. Lambda con tipo de retorno implícito (deducido por el compilador)
+    auto lambdaSimple = [](int x) { return x * 2; };
+    cout << "8. Lambda simple (retorno implícito): " << lambdaSimple(5) << "\n";
+    
+    // ---------------------------------------------------------------------
+    // 10. Lambda con tipo de retorno explícito usando ->
+    cout << "\n9. Lambda con tipo de retorno explícito:\n";
+    
+    // a) Cuando el tipo no puede ser deducido fácilmente
+    auto lambdaRaizCuadrada = [](double x) -> double {
+        if (x >= 0) return sqrt(x);
+        else return -1.0; // Debemos retornar el mismo tipo en todos los casos
+    };
+    
+    cout << "Raíz cuadrada de 16: " << lambdaRaizCuadrada(16.0) << "\n";
+    cout << "Raíz cuadrada de -5: " << lambdaRaizCuadrada(-5.0) << "\n";
+    
+    // 11. Cuando hay múltiples return con tipos diferentes
+    cout << "\n10. Lambda con tipo de retorno explícito:\n";
+    auto lambdaMayor = [](int a, long b) -> long {
+        if (a > b) 
+            return a;
+        else
+            return b;
+    };
+    cout << "El mayor entre 8 y 5: " << lambdaMayor(8, 5) << "\n";
+    
+    // ---------------------------------------------------------------------
+    // 12. Caso complejo con múltiples declaraciones return
+    cout << "\n11. Lambda compleja con múltiples return:\n";
+    
+    auto lambdaTransforma = [](int x) -> string {
+        if (x > 100) return "Muy grande";
+        else if (x > 50) return "Grande";
+        else if (x > 0) return "Pequeño";
+        else return "Negativo";
+    };
+    
+    cout << "Clasificación de 120: " << lambdaTransforma(120) << "\n";
+    cout << "Clasificación de 75: " << lambdaTransforma(75) << "\n";
+    cout << "Clasificación de 30: " << lambdaTransforma(30) << "\n";
+    cout << "Clasificación de -10: " << lambdaTransforma(-10) << "\n";
+    
+    // ---------------------------------------------------------------------
+    // 13. Lambda que devuelve otra lambda (usando -> para claridad)
+    cout << "\n12. Lambda que devuelve otra lambda:\n";
+    
+    auto generadorLambda = [](int base) -> function<int(int)> {
+        return [base](int x) -> int { return x + base; };
+    };
+    
+    auto suma5 = generadorLambda(5);
+    cout << "15 + 5 = " << suma5(15) << "\n";
+
+    auto suma10 = generadorLambda(10);
+    cout << "15 + 10 = " << suma10(15) << "\n";
 }
