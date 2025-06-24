@@ -11,6 +11,8 @@
 #include "inheritance.h"
 #include "DemoTemplates.h"
 #include "DemoFiles.h"
+#include "DemoLambda.h"
+
 using namespace std; // Para evitar el std::
 
 // Para compilar con C++:
@@ -37,9 +39,10 @@ int main(){
     // DemoTemplates2();
     // DemoVariadicTemplates();
     // DemoFiles();
-    DemoPointers();
+    // DemoPointers();
     // DemoPointertoClassMembers();
-    DemoComplexReturnValues();
+    // DemoComplexReturnValues();
+    DemoLambdaFunctions();
     return 0;
 }
 
