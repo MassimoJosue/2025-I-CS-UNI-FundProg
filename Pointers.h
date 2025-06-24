@@ -5,4 +5,11 @@ void DemoPointers();
 void DemoPointertoClassMembers();
 void DemoComplexReturnValues();
 
+enum OpeType {
+    Adding,
+    Substracting,
+    Multiplying,
+    Dividing
+};
+
 #endif // __FUNC_POINTERS_H__

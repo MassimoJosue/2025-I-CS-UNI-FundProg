@@ -6,20 +6,21 @@ using namespace std;
 
 
 void DemoSwitch(){
-    int a, b, rpta, opt;
+    int a, b, rpta, optTmp;
+    OpeType opt;
     cout << "ingrese a y b";
     cin >> a >> b;
     cout << "ingrese operacion:\n0: Suma\n1: Resta\n2: Mult\n3: Div:";
-    cin >> opt;
-    switch(opt)
-    {
-        case 0: rpta = Suma(a, b);
+    cin >> optTmp;
+    opt = (OpeType)optTmp;
+    switch(opt){
+        case Adding : rpta = Suma(a, b);
                 break;
-        case 1: rpta = Resta(a, b);
+        case Substracting : rpta = Resta(a, b);
                 break;
-        case 2: rpta = Mult(a, b);
+        case Multiplying : rpta = Mult(a, b);
                 break;
-        case 3: rpta = Division(a, b);
+        case Dividing : rpta = Division(a, b);
                 break;
         default:
                 rpta = 0;
@@ -126,8 +127,10 @@ void ExecuteOperation(int iOpe, int v1, int v2){
 //     return apMet[iOpe];
 // }
 
-auto GetMethod(int iOpe){
-    PWorkerMethod apMet[2] = {&Worker::suma, &Worker::resta};
+auto GetMethod(OpeType iOpe){
+    PWorkerMethod apMet[2];
+    apMet[(int)Adding]       = &Worker::suma;
+    apMet[(int)Substracting] = &Worker::resta;
     return apMet[iOpe];
 }
 
@@ -138,7 +141,7 @@ auto GetMethod(int iOpe){
 //     cout << "rpta: " << rpta << endl;
 // }
 
-void ExecuteMethod(Worker &obj, int iMet){
+void ExecuteMethod(Worker &obj, OpeType iMet){
     auto pMet = GetMethod(iMet);
     int rpta = (obj.*pMet)();
     Print(obj, "obj");
@@ -146,18 +149,18 @@ void ExecuteMethod(Worker &obj, int iMet){
 }
 
 void DemoComplexReturnValues(){
-    ExecuteOperation(0, 5, 7); // Suma
-    ExecuteOperation(2, 6, 8); // Multiplicacion
+    ExecuteOperation(Adding, 5, 7); // Suma
+    ExecuteOperation(Multiplying, 6, 8); // Multiplicacion
 
     Worker obj1;
-    ExecuteMethod(obj1, 0);
-    ExecuteMethod(obj1, 1);
+    ExecuteMethod(obj1, Adding);
+    ExecuteMethod(obj1, Substracting);
 
     Worker *pObj = nullptr;
     pObj = new Worker; 
     pObj->a = 12;   pObj->b = 9;
-    ExecuteMethod(*pObj, 0);
-    ExecuteMethod(*pObj, 1);
+    ExecuteMethod(*pObj, Adding);
+    ExecuteMethod(*pObj, Substracting);
 }
 
 void DemoPointers(){
