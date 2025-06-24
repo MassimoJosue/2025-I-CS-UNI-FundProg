@@ -45,6 +45,7 @@ public:
     int suma() {return a+b; };
     int resta(){return a-b; };
 };
+using PWorkerMethod = int (Worker::*)();
 
 ostream &operator<<(ostream &os, Worker &w){
     return os << "a: " << w.a << " b: " << w.b;
@@ -54,7 +55,7 @@ void Print(Worker &w, string str){
     cout << str << " " << w << endl;
 }
 
-void Fx(Worker &obj, int (Worker::*pMet)()){
+void Fx(Worker &obj, PWorkerMethod pMet){
     auto rpta = (obj.*pMet)();
     Print(obj, "obj");
     cout << "rpta: " << rpta << endl;
@@ -106,8 +107,7 @@ void DemoPointertoClassMembers(){
 
 using PF = int (*)(int, int);
 // int (*GetOperation(int n))(int, int)
-PF GetOperation(int n)
-{
+PF GetOperation(int n){
     // int (*apf[4])(int, int) = {&Suma, &Resta, &Mult, &Division};
     PF apf[4] = {&Suma, &Resta, &Mult, &Division};
     return apf[n];
@@ -121,14 +121,25 @@ void ExecuteOperation(int iOpe, int v1, int v2){
          << " Ope: "<< iOpe << " rpta: " << rpta << endl;
 }
 
-int (Worker::*GetMethod(int iOpe))()
-{
-    int (Worker::*apMet[2])() = {&Worker::suma, &Worker::resta};
+// int (Worker::*GetMethod(int iOpe))(){
+//     int (Worker::*apMet[2])() = {&Worker::suma, &Worker::resta};
+//     return apMet[iOpe];
+// }
+
+auto GetMethod(int iOpe){
+    PWorkerMethod apMet[2] = {&Worker::suma, &Worker::resta};
     return apMet[iOpe];
 }
 
+// void ExecuteMethod(Worker &obj, int iMet){
+//     int (Worker::*pMet)() = GetMethod(iMet);
+//     int rpta = (obj.*pMet)();
+//     Print(obj, "obj");
+//     cout << "rpta: " << rpta << endl;
+// }
+
 void ExecuteMethod(Worker &obj, int iMet){
-    int (Worker::*pMet)() = GetMethod(iMet);
+    auto pMet = GetMethod(iMet);
     int rpta = (obj.*pMet)();
     Print(obj, "obj");
     cout << "rpta: " << rpta << endl;
