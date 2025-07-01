@@ -203,13 +203,15 @@ void DemoLambdaFunctions() {
     // 13. Lambda que devuelve otra lambda (usando -> para claridad)
     cout << "\n12. Lambda que devuelve otra lambda:\n";
     
-    auto generadorLambda = [](int base) -> function<int(int)> {
-        return [base](int x) -> int { return x + base; };
+    auto generadorLambda = [](int &base) -> function<int(int)> {
+        return [&base](int n) -> int { return n + base++; };
     };
     
-    auto suma5 = generadorLambda(5);
-    cout << "15 + 5 = " << suma5(15) << "\n";
-
-    auto suma10 = generadorLambda(10);
-    cout << "15 + 10 = " << suma10(15) << "\n";
+    int x = 5;
+    auto suma5 = generadorLambda(x);
+    cout << "5 + 15 = " << suma5(15) << "\n";
+    // x changed to 6
+    auto suma10 = generadorLambda(x);
+    cout << "6 + 15 = " << suma10(15) << "\n";
+    cout << "x= " << x << endl;
 }

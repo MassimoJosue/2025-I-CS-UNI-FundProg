@@ -5,6 +5,9 @@ using namespace std;
 using RealType = double;
 using ImagType = float;
 
+class Complex;
+void Plus1(Complex *pComplex);
+
 // Complex
 class Complex
 {
@@ -83,7 +86,14 @@ public:
 
     RealType &getRealRef() { return m_r; }
     ImagType &getImagRef() { return m_i; }
+
+    void Metodo();
 };
+
+inline void Complex::Metodo(){
+
+}
+
 // Operador salida
 inline ostream &operator<<(ostream &os, Complex &z){
     return os << z.getReal() << ((z.getImag() < 0) ? " - " : " + ") << abs(z.getImag()) << "i";
@@ -94,6 +104,10 @@ istream &operator>>(istream &is, Complex &z){
     is >> z.getRealRef();
     is >> z.getImagRef();
     return is;
+}
+
+void Plus1(Complex *pComplex){
+    pComplex->getRealRef()++;
 }
 
 #endif // __COMPLEX_H__
