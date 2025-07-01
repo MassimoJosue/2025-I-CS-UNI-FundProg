@@ -15,7 +15,8 @@ SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
 	   academico/admin.cpp \
 	   DemoTemplates.cpp \
 	   DemoFiles.cpp \
-	   DemoLambda.cpp
+	   DemoLambda.cpp \
+	   DemoSharedPtr.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

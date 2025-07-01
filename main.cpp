@@ -12,6 +12,7 @@
 #include "DemoTemplates.h"
 #include "DemoFiles.h"
 #include "DemoLambda.h"
+#include "SharedPtr.h"
 
 using namespace std; // Para evitar el std::
 
@@ -34,7 +35,7 @@ int main(){
     // DemoClasses();
     // DemoFunctionPointers();
     // DemoComplex();
-    DemoInheritance();
+    // DemoInheritance();
     // DemoTemplates1();
     // DemoTemplates2();
     // DemoVariadicTemplates();
@@ -43,6 +44,7 @@ int main(){
     // DemoPointertoClassMembers();
     // DemoComplexReturnValues();
     // DemoLambdaFunctions();
+    DemoSharedPtr();
     return 0;
 }
 
