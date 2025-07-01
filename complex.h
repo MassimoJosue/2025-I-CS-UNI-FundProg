@@ -91,7 +91,7 @@ public:
 };
 
 inline void Complex::Metodo(){
-
+    Plus1(this);
 }
 
 // Operador salida
