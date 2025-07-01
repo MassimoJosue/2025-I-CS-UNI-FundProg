@@ -3,6 +3,8 @@
 #include "student.h"
 #include <sstream>
 
+string toString();
+
 class GraduateStudent : public Student {
     private: 
         string m_GraduateProgram = "No graduate program";
@@ -17,6 +19,7 @@ class GraduateStudent : public Student {
         string toString() override {
             std::ostringstream ostr;
             ostr << Student::toString() << " GraduateProgram: " << getGraduateProgram();
+            ostr << ::toString();
             return ostr.str();
         }
 };

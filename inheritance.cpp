@@ -57,6 +57,11 @@ void DemoInheritance(){
     }
     cout << "Fin cuarta forma\n" << endl;
     delete pObj1;
+
+    // Calling methods in different Scopes
+    cout << o4.toString() << endl;
+    cout << o4.Student::toString() << endl;
+    cout << o4.Person::toString() << endl;
 }
 
 void DemoPolymorphism(){

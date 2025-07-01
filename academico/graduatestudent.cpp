@@ -11,3 +11,7 @@ GraduateStudent::GraduateStudent(NameType name, DocType doctype,
 GraduateStudent::~GraduateStudent(){
     cout<<"Destructor Graduate Student("<<toString()<<");"<<endl;
 }
+
+string toString(){
+    return "CS-UNI";
+}

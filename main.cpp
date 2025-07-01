@@ -34,7 +34,7 @@ int main(){
     // DemoClasses();
     // DemoFunctionPointers();
     // DemoComplex();
-    // DemoInheritance();
+    DemoInheritance();
     // DemoTemplates1();
     // DemoTemplates2();
     // DemoVariadicTemplates();
@@ -42,7 +42,7 @@ int main(){
     // DemoPointers();
     // DemoPointertoClassMembers();
     // DemoComplexReturnValues();
-    DemoLambdaFunctions();
+    // DemoLambdaFunctions();
     return 0;
 }
 
