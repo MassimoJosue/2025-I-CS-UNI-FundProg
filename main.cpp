@@ -13,6 +13,7 @@
 #include "DemoFiles.h"
 #include "DemoLambda.h"
 #include "SharedPtr.h"
+#include "foldtraverse.hpp"
 
 using namespace std; // Para evitar el std::
 
@@ -38,13 +39,14 @@ int main(){
     // DemoInheritance();
     // DemoTemplates1();
     // DemoTemplates2();
-    // DemoVariadicTemplates();
+    DemoVariadicTemplates();
     // DemoFiles();
     // DemoPointers();
     // DemoPointertoClassMembers();
     // DemoComplexReturnValues();
     // DemoLambdaFunctions();
-    DemoSharedPtr();
+    // DemoSharedPtr();
+    DemoFoldTraverse();
     return 0;
 }
 

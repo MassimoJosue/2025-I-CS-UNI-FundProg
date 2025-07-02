@@ -72,15 +72,14 @@ const T& spaceBefore(const T& arg)
     return arg;
 }
 
-template <typename First, typename... Args>
-void printx(const First& firstarg, const Args&... args)
-{
-    cout << firstarg;
+template <typename T, typename... Q>
+void printx(const T& arg1, const Q&... args){
+    cout << arg1;
     (cout << ... << spaceBefore(args)) << '\n';
 }
 
-template <typename First, typename... Args>
-void printy(const First& firstarg, const Args&... args)
+template <typename T, typename... Q>
+void printy(const T& firstarg, const Q&... args)
 {
     cout << firstarg;
     auto spaceBeforex = [](const auto& arg) -> const auto&
@@ -90,7 +89,7 @@ void printy(const First& firstarg, const Args&... args)
     (cout << ... << spaceBeforex(args)) << '\n';
 }
 
-template <std::size_t ... idx, typename Container>
+template <size_t ... idx, typename Container>
 void printIdx(const Container& coll)
 {
     printx(coll[idx]...);
@@ -104,15 +103,20 @@ void printIdx2(const Container& coll, const Idx&... idx)
 }
 
 /*template <typename Container>
-void printIdx3(const Container& coll, std::size_t ... idx)
+void printIdx3(const Container& coll, size_t ... idx)
 {
      printIdx<idx...>(coll);
 }*/
 
-void DemoVariadicTemplates()
-{
-    auto rpta1 = sum1(7, 10, 4, 10.5);
-    cout << rpta1 << endl;
+void DemoVariadicTemplates(){
+    auto rpta11 = sum1(1.7);
+    cout << rpta11 << endl;
+
+    auto rpta12 = sum1(7, 10, 4, 10.5);
+    cout << rpta12 << endl;
+
+    auto rpta13 = sum1(3.14, 4, 8, 1.5, 7.1, 2.5);
+    cout << rpta13 << endl;
 
     // auto rpta2 = sum2(6, 8, 2.5, 10);
     // cout << rpta2 << endl;
@@ -127,7 +131,7 @@ void DemoVariadicTemplates()
     // //cout << rpta5 << endl;
     // print1("Holax", "quex", "tal! ", "prueba ", "de ", "variadic ", "templates ");
 
-    // std:vector<std::string> strVect = {"Hello", "testing", "variadic", "indices", "in", "C++17"};
+    // std:vector<string> strVect = {"Hello", "testing", "variadic", "indices", "in", "C++17"};
     // printIdx<1, 3, 5, 0>(strVect);
     // printIdx2(strVect, 1, 3, 5, 0);
     // //printIdx3(strVect, 1, 3, 5, 0); // Error Pending

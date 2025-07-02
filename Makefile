@@ -16,7 +16,8 @@ SRCS = main.cpp arit.cpp demos.cpp array.cpp sorting.cpp \
 	   DemoTemplates.cpp \
 	   DemoFiles.cpp \
 	   DemoLambda.cpp \
-	   DemoSharedPtr.cpp
+	   DemoSharedPtr.cpp \
+	   FoldTraverse.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)
